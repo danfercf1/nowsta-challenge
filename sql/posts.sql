@@ -2,6 +2,8 @@
 
 -- DROP TABLE IF EXISTS public.posts;
 
+CREATE sequence posts_id_seq;
+
 CREATE TABLE IF NOT EXISTS public.posts
 (
     id integer NOT NULL DEFAULT nextval('posts_id_seq'::regclass),
@@ -17,6 +19,3 @@ CREATE TABLE IF NOT EXISTS public.posts
 )
 
 TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.posts
-    OWNER to daniel;

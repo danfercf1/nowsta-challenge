@@ -9,6 +9,8 @@ services:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASS}
       POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - db-data:/var/lib/postgresql/data
   
   pgadmin:
     image: dpage/pgadmin4
@@ -32,3 +34,6 @@ services:
       DATABASE_NAME: ${DATABASE_NAME}
     ports:
       - 4000:4000
+
+volumes:
+  db-data:

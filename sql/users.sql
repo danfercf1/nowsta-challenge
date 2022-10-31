@@ -2,6 +2,12 @@
 
 -- DROP TABLE IF EXISTS public.users;
 
+-- Table: public.users
+
+-- DROP TABLE IF EXISTS public.users;
+
+CREATE sequence users_id_seq;
+
 CREATE TABLE IF NOT EXISTS public.users
 (
     id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
@@ -14,6 +20,3 @@ CREATE TABLE IF NOT EXISTS public.users
 )
 
 TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.users
-    OWNER to daniel;
