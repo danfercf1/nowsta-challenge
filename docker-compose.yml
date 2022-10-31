@@ -2,6 +2,7 @@ version: "3.8"
 services: 
   database:
     image: postgres:alpine
+    restart: unless-stopped
     ports:
       - '${DATABASE_PORT}:5432'
     environment: 
@@ -16,4 +17,18 @@ services:
     environment: 
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-      
+  
+  blog:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - database
+    environment: 
+      DATABASE_HOST: ${DATABASE_HOST}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASS: ${DATABASE_PASS}
+      DATABASE_NAME: ${DATABASE_NAME}
+    ports:
+      - 4000:4000
